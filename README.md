@@ -45,8 +45,14 @@ The app URL is :
 
 ## User stories
 - As a job seeker with some additional/special needs (<-- not sure on terminology here), I want to be confident in applying somewhere, knowing the potential employer is open to employing people with additional needs. 
-
 - As a job seeker, I want to have an opportunity to make employers aware of my specific needs and skills as early as possible.
+- As a job seeker, I want to be able to save and edit my profile and application so that I can come back to it if I don’t want to finish it in one go, and be able to change my answers later. 
+
+- As an employer, I want to attract a diverse workforce in order to access a diverse skill set.
+- As an employer, I want to encourage people with disabilities to apply to our company.
+- As an employer, I want to be informed early of how I can aid any applicants to give them the best opportunity to present themselves.
+- As an employer, I want to learn more about both the benefits and challenges of employing people with additional needs. 
+
 
 ## Features
 
