@@ -1,7 +1,7 @@
 # more2offer
 
 <p align="center">
-  <img width="460" height="300" src="https://media.giphy.com/media/14qI1vDMDPCcda/giphy.gif?cid=ecf05e47041o0u6ahsajbrxkoln49bwgddvchexqtltiho6e&rid=giphy.gif&ct=g">
+  <img width="460" height="300" src="https://media.giphy.com/media/Q7q0KbMOijEUqOhAfr/giphy.gif?cid=ecf05e47si6bpufsc78iilfopi5siscy9ri7pxzy2lmu522s&rid=giphy.gif&ct=g">
   
  <br>
  Hello there, we are team 8 👋
