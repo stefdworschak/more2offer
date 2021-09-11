@@ -213,7 +213,7 @@ To add after testing
 
 8- Create a Procfile in the terminal using 'echo web: python app.py > Procfile'.
 
-9- Deploy my app inhabitU to Heroku, adding the following: IP, MONGO_DBNAME, MONGO_URI, PORT, SECRET_KEY. [env.py]()
+9- Deploy the app to Heroku, adding the following: IP, MONGO_DBNAME, MONGO_URI, PORT, SECRET_KEY. [env.py]()
 
 10- Connect GitHub to Heroku via the console using 'heroku git:remote a InhabitU.
 
