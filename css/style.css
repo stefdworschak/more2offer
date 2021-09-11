@@ -1,3 +1,8 @@
 body {
     font-family: "Quicksand", arial, sans-serif;
 }
+
+.leftside {
+    float:left;
+    width: 50%;
+}
