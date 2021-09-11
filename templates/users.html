@@ -1,14 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>More2Offer</title>
-</head>
-<body>
-  {% for user in users %}
-    {{ user }}
-  {% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>All Users</h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for user in users %}
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-title">
+          <p>Name: {{ user.fname }} {{ user.lname }}</p>
+        </div>
+        <div class="card-content">
+          <p>Email: {{ user.email }}</p>
+          <p>Tel: {{ user.tel }}</p>
+          <p>Badges: {% for badge in user.badges %}{{ badge }}| {% endfor %}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
