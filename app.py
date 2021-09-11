@@ -24,6 +24,18 @@ def get_users():
   return render_template("users.html", users=users)
 
 
+@app.route("/form")
+def form():
+  return render_template(
+    'form.html'
+  )
+  
+
+@app.route('/hello')
+def hello():
+    return 'Hello, World'
+
+
 if __name__ == "__main__":
     """
     Runs app
@@ -31,3 +43,5 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=os.environ.get("DEBUG"))
+
+

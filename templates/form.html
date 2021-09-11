@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block header %}
+<h4 class="page-header center-align">Form (rename me)</h4>
+{% endblock %}
+
+{% block content %}
+<div class="row center-align">
+    <form action="" class="col s12" method="POST">
+        <div class="row">
+            <p>Please answer all the following questions</p>
+            <p>Check all answers that apply</p>
+        </div>
+        <p>
+            <label>
+              <input type="checkbox" class="filled-in" />
+              <span>In person</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" />
+              <span>Video call</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" />
+              <span>Voice call</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="checkbox" class="filled-in" />
+              <span>In person (with support person)</span>
+            </label>
+          </p>
+
+          <!-- Submit button -->
+          <div class="row">
+            <div class="col s12 center-align">
+                <button class="btn waves-effect waves-light" type="submit">Next Question
+                </button>
+                <a href="" class="btn waves-effect">Continue later</a>
+            </div>
+            <div>
+                <p>Your answers will be saved when you click 'Next question'.</p>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
