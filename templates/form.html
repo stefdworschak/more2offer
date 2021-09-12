@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="page-header">Questionnaire</h4>
+    </div>
+  </div>
+  <div class="row">
+    <form action="{{ url_for('questionnaire', user_id=user_id, tabs=tabs) }}" class="col s12" method="POST" id="questionnaire">
+      <div class="row">
+        <div class="col">
+          <h5>Please answer all the following questions</h5>
+          <p>Check all answers that apply</p>
+        </div>
+      </div>
+      <!-- One "tab" for each step in the form: -->
+      <div class="row">
+        <div class="col">
+          {% for tab in tabs %}
+          <div class="tab">
+            <h6>
+              {{ tab.question }}
+            </h6>
+            {% for answer in tab.answers %}
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" name="questionnaire" value="{{ tab.icons[loop.index0] }}" />
+                <span>{{ answer }}</span>
+              </label>
+            </p>
+            {% endfor %}
+          </div>
+          {% endfor %}
+
+          <div style="overflow:auto;">
+            <button class="btn waves-effect waves-light" type="button" id="prevBtn"
+              onclick="nextPrev(-1)">Previous</button>
+            <button class="btn waves-effect waves-light" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- Circles which indicates the steps of the form: -->
+    <div class="col s12" style="text-align:center;margin-top:40px;">
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{{ url_for('static', filename='js/formscript.js') }}"></script>
+{% endblock %}

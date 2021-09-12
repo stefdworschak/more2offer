@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>All Users</h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for user in users %}
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-title">
+          <p>Name: {{ user.fname }} {{ user.lname }}</p>
+        </div>
+        <div class="card-content">
+          <p>Email: {{ user.email }}</p>
+          <p>Tel: {{ user.tel }}</p>
+          <p>Badges: {% for badge in user.badges %}{{ badge }}| {% endfor %}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
