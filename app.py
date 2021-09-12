@@ -17,6 +17,10 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+def index():
+  return render_template("index.html")
+
+
 @app.route("/get_users")
 def get_users():
   users = mongo.db.Users.find()
@@ -29,11 +33,6 @@ def form():
   return render_template(
     'form.html'
   )
-  
-
-@app.route('/hello')
-def hello():
-    return 'Hello, World'
 
 
 if __name__ == "__main__":
