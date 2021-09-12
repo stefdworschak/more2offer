@@ -1,19 +1,43 @@
 body {
     font-family: "Quicksand", arial, sans-serif;
-    background-color: blueviolet;
 }
 
-.leftside {
-    float:left;
-    width: 50%;
+header {
+    background-color:cornflowerblue;
+}
+.text-center {
+    text-align: center;
 }
 
-.rightside {
-    float:right;
-    width: 50%;
+nav {
+    background-color:burlywood;
+    font-size: large;
+    padding: 5em;
 }
 
-.text-right {
-    text-align: right;
+.float-container {
+    border: 3px solid #fff;
+    /* padding: 20px; */
 }
 
+.float-child-left {
+    width: 45%;
+    float: left;
+    /* padding: 20px; */
+    border: 2px solid red;
+}  
+
+.float-child-right {
+    width: 45%;
+    float: right;
+    /* padding: 20px; */
+    border: 2px solid red;
+}  
+
+.blue-button{
+    width:20%;
+    height:25px;
+    background-color: darkblue;
+    border-radius: 25%;
+    color:white;
+}
