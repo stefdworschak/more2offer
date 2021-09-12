@@ -1,8 +1,19 @@
 body {
     font-family: "Quicksand", arial, sans-serif;
+    background-color: blueviolet;
 }
 
 .leftside {
     float:left;
     width: 50%;
 }
+
+.rightside {
+    float:right;
+    width: 50%;
+}
+
+.text-right {
+    text-align: right;
+}
+
