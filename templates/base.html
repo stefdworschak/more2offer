@@ -10,16 +10,13 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"
     type="text/css" />
   <!-- google fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
-  <!-- Compiled and minified CSS -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+  </style>
+  <!-- Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <!-- my CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -28,24 +25,38 @@
   <nav>
     <div class="container">
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">More2Offer</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/">Home</a></li>
+        <a href="{{ url_for('index') }}" class="brand-logo">More2Offer</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
           <li><a href="/">Register</a></li>
           <li><a href="/">Login</a></li>
         </ul>
       </div>
     </div>
   </nav>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="{{ url_for('index') }}">Home</a></li>
+    <li><a href="/">Register</a></li>
+    <li><a href="/">Login</a></li>
+  </ul>
+  {% block header %} {% endblock %}
 
-  {% block content %} {% endblock %}
+  <main>
+    {% block content %} {% endblock %}
+  </main>
 
-  <footer>
-    <p class="container">
-      © Team 8 2021
+  <footer class="container">
+    <p>
+      © Team Access All Areas | Trust in Soda Hackathon 2021
     </p>
   </footer>
 
+  <!-- javascript -->
+
+  {% block extrajs %}{% endblock %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>
