@@ -35,6 +35,21 @@ def form():
   )
 
 
+@app.route("/questionnaire/<user_id>", methods=["GET", "POST"])
+def questionnaire(user_id):
+
+  if request.method == "POST":
+    answers = {
+      "badges": request.form.getlist("questionnaire")
+    }
+    mongo.db.Users.update({"_id": ObjectId(user_id)}, {"$set": answers})
+    return redirect(url_for("index"))
+  
+  tabs = mongo.db.Tabs.find().sort("name")
+  
+  return render_template("form.html", user_id=user_id, tabs=tabs)
+
+
 if __name__ == "__main__":
     """
     Runs app
