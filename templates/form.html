@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="row">
-    <form action="" class="col s12" method="POST" id="questionnaire">
+    <form action="{{ url_for('questionnaire', user_id=user_id, tabs=tabs) }}" class="col s12" method="POST" id="questionnaire">
       <div class="row">
         <div class="col">
           <h5>Please answer all the following questions</h5>
@@ -18,183 +18,21 @@
       <!-- One "tab" for each step in the form: -->
       <div class="row">
         <div class="col">
+          {% for tab in tabs %}
           <div class="tab">
             <h6>
-              I would feel most comfortable in the following interview setting
+              {{ tab.question }}
             </h6>
+            {% for answer in tab.answers %}
             <p>
               <label>
-                <input type="checkbox" class="filled-in" />
-                <span>In person</span>
+                <input type="checkbox" class="filled-in" name="questionnaire" value="{{ tab.icons[loop.index0] }}" />
+                <span>{{ answer }}</span>
               </label>
             </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>Video call</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>Voice call</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>In person (with support person)</span>
-              </label>
-            </p>
+            {% endfor %}
           </div>
-
-          <div class="tab">
-            <h6>What working environment do you prefer?</h6>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I prefer to work in the office every day</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I prefer to work from home every day</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I prefer a mixture of home and office working</span>
-              </label>
-            </p>
-          </div>
-
-          <div class="tab">
-            <h6>Does any of the below apply to you?</h6>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I require assisted access to the workplace</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I require adapted keyboards/magnifiers</span>
-              </label>
-            </p>
-          </div>
-
-          <div class="tab">
-            <h6>Do you have any of the following conditions you would like to be added to your profile?</h6>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>Blindness</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>Deafness</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>Autism</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>Wheelchair User</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>Crutch User</span>
-              </label>
-            </p>
-          </div>
-
-          <div class="tab">
-            <h6>Please select all statements that are relevant to you</h6>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I find it difficult to talk to people I don't know</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I may need help with seeing</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I am hard of hearing, please speak clearly or use visual aid</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>Please be specific when describing things to me</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I work best with a fixed routine</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I am fantastic with figures</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I speak multiple languages</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I can use BSl/Makaton</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I enjoy speaking to people on the phone</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I enjoy working with computers</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I am proficient in HTML</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" class="filled-in" />
-                <span>I have exceptional eye for detail</span>
-              </label>
-            </p>
-          </div>
+          {% endfor %}
 
           <div style="overflow:auto;">
             <button class="btn waves-effect waves-light" type="button" id="prevBtn"
