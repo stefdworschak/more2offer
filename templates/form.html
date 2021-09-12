@@ -1,52 +1,221 @@
 {% extends "base.html" %}
-{% block header %}
-<h4 class="page-header center-align">Form (rename me)</h4>
-{% endblock %}
 
 {% block content %}
-<div class="row center-align">
-    <form action="" class="col s12" method="POST">
-        <div class="row">
-            <p>Please answer all the following questions</p>
-            <p>Check all answers that apply</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="page-header">Questionnaire</h4>
+    </div>
+  </div>
+  <div class="row">
+    <form action="" class="col s12" method="POST" id="questionnaire">
+      <div class="row">
+        <div class="col">
+          <h5>Please answer all the following questions</h5>
+          <p>Check all answers that apply</p>
         </div>
-        <p>
-            <label>
-              <input type="checkbox" class="filled-in" />
-              <span>In person</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input type="checkbox" class="filled-in" />
-              <span>Video call</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input type="checkbox" class="filled-in" />
-              <span>Voice call</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input type="checkbox" class="filled-in" />
-              <span>In person (with support person)</span>
-            </label>
-          </p>
+      </div>
+      <!-- One "tab" for each step in the form: -->
+      <div class="row">
+        <div class="col">
+          <div class="tab">
+            <h6>
+              I would feel most comfortable in the following interview setting
+            </h6>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>In person</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>Video call</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>Voice call</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>In person (with support person)</span>
+              </label>
+            </p>
+          </div>
 
-          <!-- Submit button -->
-          <div class="row">
-            <div class="col s12 center-align">
-                <button class="btn waves-effect waves-light" type="submit">Next Question
-                </button>
-                <a href="" class="btn waves-effect">Continue later</a>
-            </div>
-            <div>
-                <p>Your answers will be saved when you click 'Next question'.</p>
-            </div>
+          <div class="tab">
+            <h6>What working environment do you prefer?</h6>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I prefer to work in the office every day</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I prefer to work from home every day</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I prefer a mixture of home and office working</span>
+              </label>
+            </p>
+          </div>
+
+          <div class="tab">
+            <h6>Does any of the below apply to you?</h6>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I require assisted access to the workplace</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I require adapted keyboards/magnifiers</span>
+              </label>
+            </p>
+          </div>
+
+          <div class="tab">
+            <h6>Do you have any of the following conditions you would like to be added to your profile?</h6>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>Blindness</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>Deafness</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>Autism</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>Wheelchair User</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>Crutch User</span>
+              </label>
+            </p>
+          </div>
+
+          <div class="tab">
+            <h6>Please select all statements that are relevant to you</h6>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I find it difficult to talk to people I don't know</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I may need help with seeing</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I am hard of hearing, please speak clearly or use visual aid</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>Please be specific when describing things to me</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I work best with a fixed routine</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I am fantastic with figures</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I speak multiple languages</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I can use BSl/Makaton</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I enjoy speaking to people on the phone</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I enjoy working with computers</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I am proficient in HTML</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" />
+                <span>I have exceptional eye for detail</span>
+              </label>
+            </p>
+          </div>
+
+          <div style="overflow:auto;">
+            <button class="btn waves-effect waves-light" type="button" id="prevBtn"
+              onclick="nextPrev(-1)">Previous</button>
+            <button class="btn waves-effect waves-light" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+          </div>
         </div>
-
+      </div>
     </form>
+    <!-- Circles which indicates the steps of the form: -->
+    <div class="col s12" style="text-align:center;margin-top:40px;">
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
+  </div>
 </div>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{{ url_for('static', filename='js/formscript.js') }}"></script>
 {% endblock %}
