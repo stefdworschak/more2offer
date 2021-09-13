@@ -1,7 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-  <h1>Homepage</h1>
+  
+  <div class="row">
+    <div class="col s12 m6">
+      text here
+    </div>
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-title">
+          <p>Joe Bloggs</p>
+        </div>
+        <div class="card-content">
+          <p>Highlights</p>
+          <ol>
+            <li>Speaks 5 languages</li>
+            <li>10 years experience as a developer</li>
+            <li>Climbed Mount Everest</li>
+          </ol>
+          <p>Badges: </p>
+          <ul id="badge-list">
+            <li><img src="static/icons/More2offerbadges/011-i-have-diabetes.png" 
+              alt="badge to indicate diabetes">
+            </li>
+            <li><img src="static/icons/More2offerbadges/028-i-have-a-great-attention-to-detail.png" 
+              alt="badge to indicate great attention to detail">
+            </li>
+            <li><img src="static/icons/More2offerbadges/033-i-prefer-letting-others-take-the-lead-when-it-comes-to-public-speaking.png" 
+              alt="badge to indicate prefer not public speaking">
+            </li>
+            <li><img src="static/icons/More2offerbadges/031-i-am-great-with-words-and-writing.png" 
+              alt="badge to indicate great with words and writing">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 {% endblock %}
