@@ -21,13 +21,17 @@ label {
   color: inherit;
 }
 
-a.brand-logo, nav a, nav ul a {
+a.brand-logo, nav a, nav ul a, .btn a {
   color: inherit;
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
+}
+
+.bolder {
+  font-weight: 700;
 }
 
 footer p {
@@ -80,4 +84,29 @@ button.btn:hover, button.btn:focus {
 /* Styles for the profile card */
 #badge-list {
   display: inline-flex;
+}
+
+#badge-list li {
+  margin-right: 25px;
+}
+
+.user-card {
+  padding: 20px;
+}
+
+.mt-5 {
+  margin-top: 50px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+#home-image {
+  width: 100%;
+  height: auto;
 }

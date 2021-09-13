@@ -1,16 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-  
-  <div class="row">
-    <div class="col s12 m6">
-      text here
+  <div class="row mt-5">
+    <div class="col s12 m4">
+      <h3>Making Job Applications Easy for Everyone</h3>
     </div>
-    <div class="col s12 m6">
-      <div class="card">
+    <div class="col s12 m6 offset-m2">
+      <div class="card user-card">
+        {% if session.user %}
         <div class="card-title">
-          <p>Joe Bloggs</p>
+          <h3>{{ user.username }}</h3>
         </div>
+        <div class="divider"></div>
+        <div class="card-content">
+          <h5>My Badges: </h5>
+          {% if user.badges %}
+          <ul id="badge-list">
+            {% for badge in user.badges %}
+            <li><img src="static/icons/icon_num/{{ badge }}.png" alt="badge to indicate diabetes">
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>No badges yet - please fill in our <a
+              href="{{ url_for('questionnaire', username=session['user']) }}">Questionnaire</a></p>
+          {% endif %}
+        </div>
+        {% else %}
+        <div class="card-title">
+          <h3>Joe Bloggs</h3>
+        </div>
+        <hr>
         <div class="card-content">
           <p>Highlights</p>
           <ol>
@@ -18,26 +38,86 @@
             <li>10 years experience as a developer</li>
             <li>Climbed Mount Everest</li>
           </ol>
-          <p>Badges: </p>
+          <h5>My Badges: </h5>
           <ul id="badge-list">
-            <li><img src="static/icons/More2offerbadges/011-i-have-diabetes.png" 
-              alt="badge to indicate diabetes">
+            <li><img src="static/icons/More2offerbadges/011-i-have-diabetes.png" alt="badge to indicate diabetes">
             </li>
-            <li><img src="static/icons/More2offerbadges/028-i-have-a-great-attention-to-detail.png" 
-              alt="badge to indicate great attention to detail">
+            <li><img src="static/icons/More2offerbadges/028-i-have-a-great-attention-to-detail.png"
+                alt="badge to indicate great attention to detail">
             </li>
-            <li><img src="static/icons/More2offerbadges/033-i-prefer-letting-others-take-the-lead-when-it-comes-to-public-speaking.png" 
-              alt="badge to indicate prefer not public speaking">
+            <li><img
+                src="static/icons/More2offerbadges/033-i-prefer-letting-others-take-the-lead-when-it-comes-to-public-speaking.png"
+                alt="badge to indicate prefer not public speaking">
             </li>
-            <li><img src="static/icons/More2offerbadges/031-i-am-great-with-words-and-writing.png" 
-              alt="badge to indicate great with words and writing">
+            <li><img src="static/icons/More2offerbadges/031-i-am-great-with-words-and-writing.png"
+                alt="badge to indicate great with words and writing">
             </li>
           </ul>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
-
+  <div class="row mt-5 flex-container justify-center">
+    <div class="col">
+      {% if session.user %}
+      <button class="btn">
+        <a href="{{ url_for('questionnaire', username=session['user']) }}">Questionnaire</a>
+      </button>
+      {% else %}
+      <button class="btn">
+        <a href="{{ url_for('register') }}">Register Now!</a>
+      </button>
+      {% endif %}
+    </div>
+  </div>
+  <div class="divider mt-5"></div>
+  <div class="row mt-5">
+    <div class="col s12 m6 xl4">
+      <p class="bolder">A person-centred recruitment hub that aims to increase inclusion in an ever-changing world.
+      </p>
+      <p>Everyone should have access to the same career opportunities, but in reality, protected characteristics, life
+        history, and disability are just some of the factors that create barriers to recruitment, retention and people
+        being able to develop into the best version of themselves.</p>
+      <p>
+        More2Offer provide a fresh and innovative approach to recruitment. We take pride in supporting individuals to
+        explore, discover and highlight all of their positive attributes and to identify and address barriers that they
+        may currently face in any stage of the employee cycle.
+      </p>
+      <p>
+        More2Offer is a simple, easy to use platform for prospective employees to highlight their positive attributes
+        and unique skill-sets, allowing them to be matched with understanding, forward thinking employers, who value the
+        roles individuals play in forming an organisation's culture and identity.
+      </p>
+    </div>
+    <div class="col s12 m6 xl4">
+      <img id="home-image" src="static/img/home.jpeg" alt="people working together">
+    </div>
+    <div class="col s12 m6 xl4">
+      <p>
+        More2Offer supports and encourages employers to educate and empower themselves, encouraging recruitment from a
+        truly diverse pool of candidates, focusing on “Can Do” rather than “May Struggle With”.
+      </p>
+      <p>
+        More2Offer invites employers to help us reshape the recruitment landscape.
+      </p>
+      <p>
+        Employers can advertise vacancies and browse prospective employee’s whose unique career and life journeys have
+        provided them with a massively varied skills-set.
+      </p>
+      <p>
+        More2Offer encourages you to think outside the box. Do you really want to miss out on an A-Grade employee just
+        because they have a different ability set than what you have previously been used to?
+      </p>
+      <p>
+        Taking the time to adapt your recruitment approach can make all the difference to someone who may need a bit of
+        extra support…and the rewards of doing so can be nothing short of amazing.
+      </p>
+      <p>
+        Join us today as we revolutionise employment and make sure that once and for all, absolutely nobody gets left
+        behind.
+      </p>
+    </div>
+  </div>
 </div>
-
 {% endblock %}
