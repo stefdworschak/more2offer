@@ -21,7 +21,7 @@
           {% if user.badges %}
           <ul id="badge-list">
             {% for badge in user.badges %}
-            <li><img src="static/icons/icon_num/{{ badge }}.png" alt="badge to indicate diabetes">
+            <li><img src="static/icons/icon_num/{{ badge }}.png" alt="badge{{ loop.index }}">
             </li>
             {% endfor %}
           </ul>
