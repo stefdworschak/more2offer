@@ -39,12 +39,12 @@ footer p {
   font-weight: 500;
 }
 
-button.btn {
+button.btn, button.btn-large {
   border-radius: 0;
   background-color: #0D36A5;
 }
 
-button.btn:hover, button.btn:focus {
+button.btn:hover, button.btn:focus, button.btn-large:hover, button.btn-large:focus {
   background-color: #0d36a58c;
 }
 
@@ -54,6 +54,10 @@ button.btn:hover, button.btn:focus {
 
 #questionnaire {
   min-height: 70vh;
+}
+
+.blue-text {
+  color: #0D36A5 !important;
 }
 
 /* Make circles that indicate the steps of the form: */
