@@ -28,6 +28,77 @@ def get_users():
   return render_template("users.html", users=users)
 
 
+  @app.route("/login", methods=["GET", "POST"])
+  def login():
+    """
+    login page view, with two fileds, username, email,
+    """
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username")})
+
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(existing_user["password"], password):
+                session["user"] = username
+                flash("Welcome, {}".format(
+                    username))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("login"))
+
+        else:
+            # username doesn't exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """
+    register page view, with four fileds, username, email,
+    password, and confirm password
+    """
+    if request.method == "POST":
+        username = request.form.get("username").lower()
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirm-password")
+        email = request.form.get("email")
+
+        # *** check if username already exists in db
+        existing_user = mongo.db.users.find_one({"username": username})
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        if password == confirm_password:
+            register = {
+                "username": password,
+                "password": generate_password_hash(password),
+                "email": email
+            }
+            mongo.db.users.insert_one(register)
+
+            # *** put the new user into 'session' cookie
+            session["user"] = username
+            flash("Registration Successful!")
+            return redirect(url_for("profile", username=session["user"]))
+
+        else:
+            flash("Passwords do not match.")
+
+    return render_template("register.html")
+
+
 @app.route("/form")
 def form():
   return render_template(
