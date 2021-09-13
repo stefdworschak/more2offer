@@ -28,37 +28,37 @@ def get_users():
   return render_template("users.html", users=users)
 
 
-  @app.route("/login", methods=["GET", "POST"])
-  def login():
-    """
-    login page view, with two fileds, username, email,
-    """
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+@app.route("/login", methods=["GET", "POST"])
+def login():
+  """
+  login page view, with two fileds, username, email,
+  """
+  if request.method == "POST":
+      username = request.form.get("username")
+      password = request.form.get("password")
 
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+      existing_user = mongo.db.users.find_one(
+          {"username": request.form.get("username")})
 
-        if existing_user:
-            # ensure hashed password matches user input
-            if check_password_hash(existing_user["password"], password):
-                session["user"] = username
-                flash("Welcome, {}".format(
-                    username))
-                return redirect(url_for(
-                    "profile", username=session["user"]))
-            else:
-                # invalid password match
-                flash("Incorrect Username and/or Password")
-                return redirect(url_for("login"))
+      if existing_user:
+          # ensure hashed password matches user input
+          if check_password_hash(existing_user["password"], password):
+              session["user"] = username
+              flash("Welcome, {}".format(
+                  username))
+              return redirect(url_for(
+                  "profile", username=session["user"]))
+          else:
+              # invalid password match
+              flash("Incorrect Username and/or Password")
+              return redirect(url_for("login"))
 
-        else:
-            # username doesn't exist
-            flash("Incorrect Username and/or Password")
-            return redirect(url_for("login"))
+      else:
+          # username doesn't exist
+          flash("Incorrect Username and/or Password")
+          return redirect(url_for("login"))
 
-    return render_template("login.html")
+  return render_template("login.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
