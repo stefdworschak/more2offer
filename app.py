@@ -19,7 +19,13 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-  return render_template("index.html")
+
+  # checks if there is a user saved in session
+  if session.get("user"):
+      user = mongo.db.Users.find_one({"username": session["user"]})
+  else:
+      user = False
+  return render_template("index.html", user=user)
 
 
 @app.route("/<username>")
@@ -128,7 +134,6 @@ def questionnaire(username):
 
   user = mongo.db.Users.find_one({"username": session["user"]})
 
-  print(user)
   if request.method == "POST":
     answers = {
       "badges": request.form.getlist("questionnaire"),
@@ -141,6 +146,12 @@ def questionnaire(username):
   tabs = mongo.db.Tabs.find().sort("name")
   
   return render_template("form.html", username=username, tabs=tabs)
+
+
+@app.route("/profiles")
+def profiles():
+  profiles = mongo.db.Users.find()
+  return render_template("profiles.html", profiles=profiles)
 
 
 @app.errorhandler(404)

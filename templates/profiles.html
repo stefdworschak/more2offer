@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  {% if session.user == "admin" %}
+  <div class="row">
+    <div class="col">
+      <h2>All Profiles</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      {% for profile in profiles %}
+      {% if profile.username != "admin" %}
+      <div class="card user-card">
+        <div class="card-title">
+          <h3>{{ profile.username }}</h3>
+        </div>
+        <div class="divider"></div>
+        <div class="card-content">
+          {% if profile.highlights %}
+          <h5>Highlights:</h5>
+          <p>{{ profile.highlights }}</p>
+          {% endif %}
+          {% if profile.badges %}
+          <h5>Badges: </h5>
+          <ul id="badge-list">
+            {% for badge in profile.badges %}
+            <li><img src="static/icons/icon_num/{{ badge }}.png" alt="badge{{ loop.index }}">
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% if profile.extra %}
+          <h5>Extra Info:</h5>
+          <p>{{ profile.extra }}</p>
+          {% endif %}
+          <h5>Contact Details</h5>
+          <p>Email: {{ profile.email }}</p>
+          <p>Telephone: {{ profile.tel }}</p>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="row">
+    <div class="col">
+      <h5>Only the Admin account may view this page</h5>
+      <h6>Return <a href="{{ url_for('index') }}">Home</a></h6>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
