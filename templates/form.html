@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container">
+  {% if session.user %}
   <div class="row">
     <div class="col">
       <h4 class="page-header">Questionnaire</h4>
@@ -51,6 +52,13 @@
       <span class="step"></span>
     </div>
   </div>
+  {% else %}
+  <div class="row">
+    <div class="col">
+      <h2>You must be logged in to access this feature</h2>
+    </div>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
 

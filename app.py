@@ -26,7 +26,8 @@ def index():
 def loggedin(username):
   username = mongo.db.Users.find_one(
     {"username": session["user"]})["username"]
-  user = mongo.db.users.find_one({"username": session["user"]})
+  user = mongo.db.Users.find_one({"username": session["user"]})
+  print(user)
   return render_template("index.html", username=username, user=user)
 
 
