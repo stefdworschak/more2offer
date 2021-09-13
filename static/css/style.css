@@ -76,3 +76,8 @@ button.btn:hover, button.btn:focus {
 .step.finish {
   background-color: #04AA6D;
 }
+
+/* Styles for the profile card */
+#badge-list {
+  display: inline-flex;
+}
