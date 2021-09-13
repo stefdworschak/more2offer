@@ -3,6 +3,7 @@ from flask import (
   Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
   import env
 
@@ -21,6 +22,14 @@ def index():
   return render_template("index.html")
 
 
+@app.route("/<username>")
+def loggedin(username):
+  username = mongo.db.Users.find_one(
+    {"username": session["user"]})["username"]
+  user = mongo.db.users.find_one({"username": session["user"]})
+  return render_template("index.html", username=username, user=user)
+
+
 @app.route("/get_users")
 def get_users():
   users = mongo.db.Users.find()
@@ -37,7 +46,7 @@ def login():
       username = request.form.get("username")
       password = request.form.get("password")
 
-      existing_user = mongo.db.users.find_one(
+      existing_user = mongo.db.Users.find_one(
           {"username": request.form.get("username")})
 
       if existing_user:
@@ -46,8 +55,7 @@ def login():
               session["user"] = username
               flash("Welcome, {}".format(
                   username))
-              return redirect(url_for(
-                  "profile", username=session["user"]))
+              return redirect(url_for("loggedin", username=session["user"]))
           else:
               # invalid password match
               flash("Incorrect Username and/or Password")
@@ -61,6 +69,19 @@ def login():
   return render_template("login.html")
 
 
+# logs out user
+@app.route("/logout")
+def logout():
+    """
+    This function allows a user to log out and removes them from
+    the session cookie
+    """
+    # remove user from session cookies
+    flash("Logged Out")
+    session.pop("user")
+    return redirect(url_for("login"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """
@@ -71,10 +92,11 @@ def register():
         username = request.form.get("username").lower()
         password = request.form.get("password")
         confirm_password = request.form.get("confirm-password")
-        email = request.form.get("email")
+        email = request.form.get("email").lower()
+        tel = request.form.get("tel")
 
         # *** check if username already exists in db
-        existing_user = mongo.db.users.find_one({"username": username})
+        existing_user = mongo.db.Users.find_one({"username": username})
 
         if existing_user:
             flash("Username already exists")
@@ -82,16 +104,17 @@ def register():
 
         if password == confirm_password:
             register = {
-                "username": password,
+                "username": username,
                 "password": generate_password_hash(password),
-                "email": email
+                "email": email,
+                "tel": tel,
             }
-            mongo.db.users.insert_one(register)
+            mongo.db.Users.insert_one(register)
 
             # *** put the new user into 'session' cookie
             session["user"] = username
             flash("Registration Successful!")
-            return redirect(url_for("profile", username=session["user"]))
+            return redirect(url_for("loggedin", username=session["user"]))
 
         else:
             flash("Passwords do not match.")
@@ -99,26 +122,22 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/form")
-def form():
-  return render_template(
-    'form.html'
-  )
+@app.route("/questionnaire/<username>", methods=["GET", "POST"])
+def questionnaire(username):
 
+  user = mongo.db.Users.find_one({"username": session["user"]})
 
-@app.route("/questionnaire/<user_id>", methods=["GET", "POST"])
-def questionnaire(user_id):
-
+  print(user)
   if request.method == "POST":
     answers = {
       "badges": request.form.getlist("questionnaire")
     }
-    mongo.db.Users.update({"_id": ObjectId(user_id)}, {"$set": answers})
+    mongo.db.Users.update({"username": username}, {"$set": answers})
     return redirect(url_for("index"))
   
   tabs = mongo.db.Tabs.find().sort("name")
   
-  return render_template("form.html", user_id=user_id, tabs=tabs)
+  return render_template("form.html", username=username, tabs=tabs)
 
 
 @app.errorhandler(404)

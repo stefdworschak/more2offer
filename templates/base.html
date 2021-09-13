@@ -28,19 +28,42 @@
         <a href="{{ url_for('index') }}" class="brand-logo">More2Offer</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
         <ul class="right hide-on-med-and-down">
+          {% if session.user %}
+          <li><a href="{{ url_for('loggedin', username=session['user']) }}">Home</a></li>
+          <li><a href="{{ url_for('questionnaire', username=session['user']) }}">Questionnaire</a></li>
+          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+          {% else %}
           <li><a href="{{ url_for('index') }}">Home</a></li>
-          <li><a href="/">Register</a></li>
-          <li><a href="/">Login</a></li>
+          <li><a href="{{ url_for('register') }}">Register</a></li>
+          <li><a href="{{ url_for('login') }}">Login</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
   </nav>
   <ul class="sidenav" id="mobile-demo">
+    {% if session.user %}
+    <li><a href="{{ url_for('loggedin', username=session['user']) }}">Home</a></li>
+    <li><a href="{{ url_for('questionnaire', username=session['user']) }}">Questionnaire</a></li>
+    <li><a href="{{ url_for('logout') }}"">Log Out</a></li>
+    {% else %}
     <li><a href="{{ url_for('index') }}">Home</a></li>
-    <li><a href="/">Register</a></li>
-    <li><a href="/">Login</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    {% endif %}
   </ul>
-  {% block header %} {% endblock %}
+
+  <section>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="container flashes mt-2">
+      <h6 class="text-center">{{ message }}</h6>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </section>
 
   <main>
     {% block content %} {% endblock %}
