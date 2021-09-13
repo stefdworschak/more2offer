@@ -121,6 +121,14 @@ def questionnaire(user_id):
   return render_template("form.html", user_id=user_id, tabs=tabs)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    give 404 error id the page do not exisit
+    """
+    return render_template('404.html'), 404
+
+
 if __name__ == "__main__":
     """
     Runs app
