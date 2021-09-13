@@ -13,6 +13,10 @@
         </div>
         <div class="divider"></div>
         <div class="card-content">
+          {% if user.highlights %}
+          <h5>Highlights:</h5>
+          <p>{{ user.highlights }}</p>
+          {% endif %}
           <h5>My Badges: </h5>
           {% if user.badges %}
           <ul id="badge-list">
@@ -25,14 +29,18 @@
           <p>No badges yet - please fill in our <a
               href="{{ url_for('questionnaire', username=session['user']) }}">Questionnaire</a></p>
           {% endif %}
+          {% if user.extra %}
+          <h5>Extra Info:</h5>
+          <p>{{ user.extra }}</p>
+          {% endif %}
         </div>
         {% else %}
         <div class="card-title">
           <h3>Joe Bloggs</h3>
         </div>
-        <hr>
+        <div class="divide"></div>
         <div class="card-content">
-          <p>Highlights</p>
+          <h5>Highlights:</h5>
           <ol>
             <li>Speaks 5 languages</li>
             <li>10 years experience as a developer</li>
