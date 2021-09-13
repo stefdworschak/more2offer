@@ -131,10 +131,12 @@ def questionnaire(username):
   print(user)
   if request.method == "POST":
     answers = {
-      "badges": request.form.getlist("questionnaire")
+      "badges": request.form.getlist("questionnaire"),
+      "highlights": request.form.get("highlights"),
+      "extra": request.form.get("extra")
     }
     mongo.db.Users.update({"username": username}, {"$set": answers})
-    return redirect(url_for("index"))
+    return redirect(url_for("loggedin", username=session["user"]))
   
   tabs = mongo.db.Tabs.find().sort("name")
   
